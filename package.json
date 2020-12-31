@@ -1,18 +1,19 @@
 {
   "name": "wobblemakers-server",
   "version": "1.0.0",
-  "description": "backend para CRUD de membros do selo",
-  "main": "index.js",
+  "description": "API for CRUDing site info",
+  "main": "app.js",
+  "engines": {
+    "node": "14.15.x"
+  },
   "scripts": {
-    "start": "nodemon app.js --exec babel-node --presets env",
-    "build": "del dist && mkdir dist && babel . -s -D -d dist --presets env --ignore node_modules",
+    "dev": "nodemon app.js",
+    "start": "node app.js",
     "lint": "prettier --write \"./**/*.{js,json}\" && eslint --fix --ignore-path .gitignore ."
   },
-  "author": "",
-  "license": "ISC",
+  "author": "peruibeloko",
+  "license": "The Unlicense",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
     "eslint": "^7.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
@@ -22,6 +23,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.7"
   }

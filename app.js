@@ -1,9 +1,9 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import mongoose from 'mongoose';
-import routes from './index';
+import cors from 'cors';
 
-const cors = require('cors');
+import routes from './index';
 
 const app = express();
 const port = process.env.PORT || '9595';
@@ -14,14 +14,18 @@ const port = process.env.PORT || '9595';
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
-mongoose.connect('mongodb://localhost:27017/wobblemakers');
+mongoose.connect(
+  `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}\
+  @peru-0.kat75.mongodb.net/${process.env.MONGODB_DATABASE}\
+  ?retryWrites=true&w=majority`
+);
 
 /**
  * Middleware
  */
 
-app.use(bodyParser.urlencoded({ extended: true, limit: '16mb' }));
-app.use(bodyParser.json({ extended: true, limit: '16mb' }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ extended: true }));
 app.use(cors());
 
 app.use(express.static('public'));
