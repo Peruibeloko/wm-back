@@ -1,6 +1,6 @@
-import Artist from '../models/artistModel';
+const Artist = require('../models/artistModel');
 
-exports.getArtist = (req, res) => {
+module.exports.getArtist = (req, res) => {
   Artist.findOne(
     {
       name: req.params.name
@@ -14,7 +14,7 @@ exports.getArtist = (req, res) => {
   );
 };
 
-exports.getAllArtists = (req, res) => {
+module.exports.getAllArtists = (req, res) => {
   Artist.find({}, (err, artists) => {
     if (err) {
       res.send(err);
@@ -23,7 +23,7 @@ exports.getAllArtists = (req, res) => {
   });
 };
 
-exports.createArtist = (req, res) => {
+module.exports.createArtist = (req, res) => {
   const newArtist = new Artist(req.body);
   newArtist.save((err, artist) => {
     if (err) {
@@ -33,7 +33,7 @@ exports.createArtist = (req, res) => {
   });
 };
 
-exports.updateArtist = (req, res) => {
+module.exports.updateArtist = (req, res) => {
   Artist.updateOne(
     {
       name: req.params.name
@@ -48,7 +48,7 @@ exports.updateArtist = (req, res) => {
   );
 };
 
-exports.deleteArtist = (req, res) => {
+module.exports.deleteArtist = (req, res) => {
   Artist.deleteOne(
     {
       name: req.params.name
@@ -65,11 +65,9 @@ exports.deleteArtist = (req, res) => {
   );
 };
 
-exports.getAllArtistNames = (req, res) => {
+module.exports.getAllArtistNames = (req, res) => {
   Artist.find({}, (err, artists) => {
-    if (err) {
-      res.send(err);
-    }
-    res.json(artists.map(a => a.name));
+    if (err) res.send(err);
+    else res.json(artists.map(a => a.name));
   });
 };

@@ -1,8 +1,6 @@
-import artist from './controllers/artistController';
+const router = require('express').Router();
 
-const express = require('express');
-
-const router = express.Router();
+const artist = require('./controllers/artistController');
 
 router.route('/artists').get(artist.getAllArtists).post(artist.createArtist);
 

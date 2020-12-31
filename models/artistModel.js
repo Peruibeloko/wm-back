@@ -1,4 +1,6 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const Artist = new Schema({
   name: {
@@ -35,4 +37,4 @@ const Artist = new Schema({
   }
 });
 
-export default mongoose.model('Artist', Artist);
+module.exports = mongoose.model('Artist', Artist);
